@@ -16,9 +16,9 @@ public static void main(String[] args) {
 		{
 			System.out.println("Loading data ...");		
 			try {
-				BufferedReader s = new BufferedReader(
-					new InputStreamReader(
-						new FileInputStream("student.txt"))); 
+				FileInputStream in = new FileInputStream("student.txt");
+				InputStreamReader isr = new InputStreamReader(in);
+				BufferedReader s = new BufferedReader(isr); 
 				String r = s.readLine(); String i[] = r.split(", ");
 
 				for(String j : i){
@@ -33,9 +33,9 @@ public static void main(String[] args) {
 		{
 			System.out.println("Loading data ...");			
 			try {
-				BufferedReader s = new BufferedReader(
-					new InputStreamReader(
-						new FileInputStream("student.txt"))); 
+				FileInputStream in = new FileInputStream("student.txt");
+				InputStreamReader isr = new InputStreamReader(in);
+				BufferedReader s = new BufferedReader(isr);
 				String r = s.readLine();
 				System.out.println(r);
 				String i[] = r.split(",");	
@@ -49,8 +49,8 @@ public static void main(String[] args) {
 		else if(args[0].contains("+")){
 			System.out.println("Loading data ...");			
 			try {
-				BufferedWriter s = new BufferedWriter(
-					new FileWriter("student.txt", true));
+				FileWriter fw = new FileWriter("student.txt", true);
+				BufferedWriter s = new BufferedWriter(fw);
 				String t = args[0].substring(1);
 	        	Date d = new Date();
 	        	String df = "dd/mm/yyyy-hh:mm:ss a";
@@ -87,21 +87,27 @@ public static void main(String[] args) {
 		{
 			System.out.println("Loading data ...");			
 			try {
-				BufferedReader s = new BufferedReader(
-					new InputStreamReader(
-						new FileInputStream("student.txt"))); 
-			String D = s.readLine();
-			char a[] = D.toCharArray();			
-			boolean in_word = false;
-			int count=0;
-			for(char c:a) {
-				if(c ==' ') 
-				{
-					if (!in_word) {	count++; in_word =true;	}
-					else { in_word=false;}			
+				FileInputStream in = new FileInputStream("student.txt");
+				InputStreamReader isr = new InputStreamReader(in);
+				BufferedReader s = new BufferedReader(isr);
+				String D = s.readLine();
+				char a[] = D.toCharArray();			
+				boolean in_word = false;
+				int count=0;
+				for(char c:a) {
+					if(c ==' ') 
+					{
+						if (!in_word) 
+							{
+								count++; in_word =true;
+							}
+
+						else { 
+							in_word=false;
+						}			
+					}
 				}
-			}
-			System.out.println(count +" word(s) found " + a.length);
+				System.out.println(count +" word(s) found " + a.length);
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");				
 		}
