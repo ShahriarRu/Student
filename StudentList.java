@@ -12,14 +12,14 @@ public static void main(String[] args) {
             return; // Exit early.
         }
 
-		else if(args[0].equals("a")) 
+		else if(args[0].equals(Constants.ShowAll)) 
 		{
 			System.out.println("Loading data ...");		
 			try {
-				FileInputStream in = new FileInputStream("student.txt");
+				FileInputStream in = new FileInputStream(Constants.StudentList);
 				InputStreamReader isr = new InputStreamReader(in);
 				BufferedReader s = new BufferedReader(isr); 
-				String r = s.readLine(); String i[] = r.split(", ");
+				String r = s.readLine(); String i[] = r.split(Constants.StudentEntryDelimiter);
 
 				for(String j : i){
 			 		System.out.println(j);
@@ -29,16 +29,16 @@ public static void main(String[] args) {
 		}
 
 
-		else if(args[0].equals("r")) 
+		else if(args[0].equals(Constants.ShowRandom)) 
 		{
 			System.out.println("Loading data ...");			
 			try {
-				FileInputStream in = new FileInputStream("student.txt");
+				FileInputStream in = new FileInputStream(Constants.StudentList);
 				InputStreamReader isr = new InputStreamReader(in);
 				BufferedReader s = new BufferedReader(isr);
 				String r = s.readLine();
 				System.out.println(r);
-				String i[] = r.split(",");	
+				String i[] = r.split(Constants.StudentEntryDelimiter);	
 				Random x = new Random(0);
 				int y = x.nextInt();
 				System.out.println(i[y]);
@@ -46,10 +46,10 @@ public static void main(String[] args) {
 			System.out.println("Data Loaded.");			
 		}
 
-		else if(args[0].contains("+")){
+		else if(args[0].contains(Constants.AddEntry)){
 			System.out.println("Loading data ...");			
 			try {
-				FileWriter fw = new FileWriter("student.txt", true);
+				FileWriter fw = new FileWriter(Constants.StudentList, true);
 				BufferedWriter s = new BufferedWriter(fw);
 				String t = args[0].substring(1);
 	        	Date d = new Date();
@@ -62,15 +62,15 @@ public static void main(String[] args) {
 			System.out.println("Data Loaded.");	
 		}
 
-		else if(args[0].contains("?")) 
+		else if(args[0].contains(Constants.FindEntry)) 
 		{
 			System.out.println("Loading data ...");			
 			try {
 				BufferedReader s = new BufferedReader(
 					new InputStreamReader(
-						new FileInputStream("student.txt"))); 
+						new FileInputStream(Constants.StudentList))); 
 				String r = s.readLine();
-				String i[] = r.split(",");	
+				String i[] = r.split("Constants.StudentEntryDelimiter");	
 				boolean done = false;
 				String t = args[0].substring(1);
 				for(int idx = 0; idx<i.length && !done; idx++) {
@@ -83,7 +83,7 @@ public static void main(String[] args) {
 			System.out.println("Data Loaded.");				
 		}
 
-		else if(args[0].contains("c")) 
+		else if(args[0].contains(Constants.ShowCount)) 
 		{
 			System.out.println("Loading data ...");			
 			try {
