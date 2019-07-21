@@ -6,7 +6,13 @@ public static void main(String[] args) {
 
 
 //		Check arguments
-		if(args[0].equals("a")) 
+        if (args == null || args.length != 1)
+        {
+            System.out.println("Error!!! Please Pass right Arguments");
+            return; // Exit early.
+        }
+
+		else if(args[0].equals("a")) 
 		{
 			System.out.println("Loading data ...");		
 			try {
